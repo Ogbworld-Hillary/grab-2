@@ -15,48 +15,52 @@ const NavigateCard = () => {
     const navigation = useNavigation()
 
     return (
-        <Screen style={tw`bg-white flex-1`}>
-            <Text style={tw`text-center pb-5 text-xl font-bold`}>GOOD MORNING, LARY-BIBIAN</Text>
-            <View style={tw`border-t border-gray-100 flex-shrink relative z-20 bg-white`}>
-                <View style={tw`bg-white pb-2`}>
+        <Screen style={tw`flex-1 bg-white`}>
+            <Text style={tw`pb-5 text-xl font-bold text-center`}>GOOD MORNING, LARY-BIBIAN</Text>
+            <View style={tw`relative z-20 flex-shrink bg-white border-t border-gray-100`}>
+                <View style={tw`pb-2 bg-white`}>
                     <GooglePlacesAutocomplete
                         placeholder='Where to?'
-                        nearbyPlacesAPI="GooglePlacesSearch"
-                        debounce={400}
-                        onPress={(data, details = null) => {
-                            dispatch(setDestination({
-                                loaction: details.geometry.location,
-                                description: data.description
-                            }))
-                        }}
-                        minLength={2}
+                        styles={toInputBoxStyles}
                         fetchDetails={true}
                         returnKeyType={"search"}
-                        onFail={error => console.error(error)}
+                        minLength={2}
+                        onPress={(data, details = null) => {
+                         dispatch(setDestination({
+                            loaction: details.geometry.location,
+                            description: data.description
+                         }))
+                        }}
+                        enablePoweredByContainer={false}
                         query={{
                             key: GOOGLE_MAPS_APIKEY,
                             language: 'en',
                         }}
-                        styles={toInputBoxStyles}
-                        enablePoweredByContainer={false}
+                        nearbyPlacesAPI="GooglePlacesSearch"
+                        debounce={400}
+                        
+                        
+                        onFail={error => console.error(error)}
+                        
+                        
                     />
                 </View>
             </View>
-            <View style={tw`px-3 bg-white relative z-10 justify-between flex-1`}>
+            <View style={tw`relative z-10 justify-between flex-1 px-3 bg-white`}>
                 <NavFavourites />
-                <View style={tw`mt-3 flex-row justify-evenly py-3 border-t border-gray-100`}>
+                <View style={tw`flex-row py-3 mt-3 border-t border-gray-100 justify-evenly`}>
                     <TouchableOpacity 
-                        style={tw`flex-row bg-black w-24 px-4 py-3 rounded-full border border-black`}
+                        style={tw`flex-row w-24 px-4 py-3 bg-black border border-black rounded-full`}
                         onPress={() => navigation.push('RideOptionsCard')}
                     >
                         <Icon name="car" type="font-awesome" color="white" size={16} />
-                        <Text style={tw`text-white text-center pl-3`}>Ride</Text>
+                        <Text style={tw`pl-3 text-center text-white`}>Ride</Text>
                     </TouchableOpacity>
                     <TouchableOpacity 
-                        style={tw`flex-row bg-white w-24 px-4 py-3 rounded-full border border-black`}
+                        style={tw`flex-row w-24 px-4 py-3 bg-white border border-black rounded-full`}
                     >
                         <Icon name="fast-food-outline" type="ionicon" color="black" size={16} />
-                        <Text style={tw`text-black text-center pl-3`}>Ride</Text>
+                        <Text style={tw`pl-3 text-center text-black`}>Ride</Text>
                     </TouchableOpacity>
                 </View>
             </View>

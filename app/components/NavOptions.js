@@ -30,11 +30,11 @@ const NavOptions = () => {
             data={data}
             renderItem={({ item }) => (
              <TouchableOpacity 
-                style={tw`p-2 pl-6 pb-6 pt-4 bg-gray-200 mr-4 w-40 rounded-lg`}
+                style={tw`w-40 p-2 pt-4 pb-6 pl-6 mr-4 bg-gray-200 rounded-lg`}
                 onPress={() => navigation.push(item.screen)}
                 disabled={!origin}
                 >
-                <View>
+                <View style={tw`${!origin && "opacity-20"}`}>
                   <Image 
                     style={{ 
                     width:120, 

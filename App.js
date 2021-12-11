@@ -4,8 +4,11 @@ import { Provider } from "react-redux";
 import AppNavigator from './app/navigation/AppNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { KeyboardAvoidingView, Platform } from 'react-native'; 
+import { createStackNavigator } from '@react-navigation/stack';
 
 export default function App() {
+  const Stack = createStackNavigator
+  
   return (
     <SafeAreaProvider>
       <Provider store={store}>

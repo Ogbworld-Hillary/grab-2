@@ -13,17 +13,23 @@ const HomeScreen = () => {
     const dispatch = useDispatch()
 
     return (
-        <Screen style={tw`bg-white h-full`}>
+        <Screen style={tw`h-full bg-white`}>
             <View style={tw`p-5`}>
                 <Image
-                    source={{ uri: 'https://statik.tempo.co/data/2019/02/26/id_822515/822515_720.jpg' }}
+                    source={{ uri: 'https://link.papareact.com/gzs' }}
                     style={styles.logo}
                 />
                 <View style={tw`mb-3`}>
                     <GooglePlacesAutocomplete
                         placeholder='Where from?'
-                        nearbyPlacesAPI="GooglePlacesSearch"
-                        debounce={400}
+                        styles={{
+                            container: {
+                                flex: 0,
+                            },
+                            textInput: {
+                                fontSize: 18,
+                            }
+                        }}
                         onPress={(data, details = null) => {
                             dispatch(setOrigin({
                                 loaction: details.geometry.location,
@@ -31,23 +37,21 @@ const HomeScreen = () => {
                             }))
                             dispatch(setDestination(null))
                         }}
-                        minLength={2}
+                        
                         fetchDetails={true}
+                        enablePoweredByContainer={false}
                         returnKeyType={"search"}
-                        onFail={error => console.error(error)}
+                        minLength={2}
                         query={{
                             key: GOOGLE_MAPS_APIKEY,
                             language: 'en',
                         }}
-                        styles={{
-                            container: {
-                                flex: 0,
-                            },
-                            textInput: {
-                                fontSize: 15
-                            }
-                        }}
-                        enablePoweredByContainer={false}
+                        nearbyPlacesAPI="GooglePlacesSearch"
+                        debounce={400}
+                        
+                        onFail={error => console.error(error)}
+                        
+                        
                     />
                 </View>
                 <NavOptions />

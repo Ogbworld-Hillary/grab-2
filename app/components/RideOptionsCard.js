@@ -42,7 +42,7 @@ const RideOptionsCard = () => {
     }, [origin, destination])
 
     const travelConst = (item) => {
-        return ((travelTimeInformation?.duration?.value * SEARCH_CHARGE_RATE * item?.multiplier) / 100).toFixed(2)
+        return ((travelTimeInformation?.duration?.value * SEARCH_CHARGE_RATE * item?.multiplier) / 500).toFixed(2)
     }
 
     const onChoose = () =>{
@@ -50,8 +50,8 @@ const RideOptionsCard = () => {
     }
 
     return (
-        <Screen style={tw`bg-white h-full`}>
-            <View style={tw`items-center flex-row justify-center mb-3`}>
+        <Screen style={tw`h-full bg-white`}>
+            <View style={tw`flex-row items-center justify-center mb-3`}>
                 <TouchableOpacity
                     style={{ left: 10, position: 'absolute', zIndex: 100 }}
                     onPress={() => navigation.push("NavigateCard")}
@@ -64,7 +64,7 @@ const RideOptionsCard = () => {
                         style={tw`p-3`}
                     />
                 </TouchableOpacity>
-                <Text style={tw`text-center text-xl font-bold`}>Select a ride - {travelTimeInformation?.distance?.text}</Text>
+                <Text style={tw`text-xl font-bold text-center`}>Select a ride - {travelTimeInformation?.distance?.text}</Text>
             </View>
             <View style={tw`flex-1 mt-2`}>
                 <FlatList
@@ -84,7 +84,7 @@ const RideOptionsCard = () => {
                                     <Text style={tw`text-xl font-bold text-black`}>{item.title}</Text>
                                     <Text style={tw`text-gray-600`}>{travelTimeInformation?.duration?.text} Travel time</Text>
                                 </View>
-                                <Text style={tw`text-gray-800 text-lg`}>
+                                <Text style={tw`text-lg text-gray-800`}>
                                    {new Intl.NumberFormat('en-us', {
                                         style: 'currency',
                                         currency: 'USD'
@@ -103,7 +103,7 @@ const RideOptionsCard = () => {
                     disabled={!selected}
                     onPress={onChoose}
                 >
-                    <Text style={tw`text-center text-white text-xl`}>Choose {selected?.title}</Text>
+                    <Text style={tw`text-xl text-center text-white`}>Choose {selected?.title}</Text>
                 </TouchableOpacity>
             </View>
         </Screen>

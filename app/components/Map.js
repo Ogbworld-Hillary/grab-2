@@ -37,9 +37,9 @@ const Map = () => {
     }
 
     return (
-        <View style={tw`flex-1 relative`}>
+        <View style={tw`relative flex-1`}>
             <TouchableOpacity
-                style={[ tw`bg-white p-3 rounded-full shadow-lg`,{ top: Constants.statusBarHeight, left: 20, position: 'absolute', zIndex: 100 }]}
+                style={[ tw`p-3 bg-white rounded-full shadow-lg`,{ top: Constants.statusBarHeight, left: 20, position: 'absolute', zIndex: 100 }]}
                 onPress={() => navigation.push("Home")}
             >
                 <Icon
@@ -53,7 +53,7 @@ const Map = () => {
 
             <MapView
                 ref={mapRef}
-                style={tw`flex-1 relative z-10`}
+                style={tw`relative z-10 flex-1`}
                 initialRegion={{
                     latitude: origin?.loaction.lat,
                     longitude: origin?.loaction.lng,
@@ -72,7 +72,7 @@ const Map = () => {
                              latitude: destination?.loaction.lat,
                              longitude: destination?.loaction.lng,
                          }}
-                        origin={origin.description}
+                         origin={origin.description}
                         destination={destination.description}
                         lineDashPattern={[0]}
                         apikey={GOOGLE_MAPS_APIKEY}
